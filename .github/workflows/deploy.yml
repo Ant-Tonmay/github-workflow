@@ -1,0 +1,30 @@
+name: Deploy to Endpoint
+
+on:
+  push:
+    branches:
+      - main  # Deploy on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout code from GitHub
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    # Step 4: Hit the deployment endpoint
+    - name: Trigger Deployment
+      run: |
+        curl -X POST "https://pc-tough-dual-med.trycloudflare.com" \
+             -d '{"application_name": "github-workflow", "container_name": "gw"}'
