@@ -27,4 +27,5 @@ jobs:
     - name: Trigger Deployment
       run: |
         curl -X POST "https://pc-tough-dual-med.trycloudflare.com/build-deploy" \
+             -H "Content-Type: application/json" \
              -d '{"application_name": "github-workflow", "container_name": "gw"}'
