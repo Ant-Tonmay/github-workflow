@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1> Github Work flow test 5</h1>
+      <h1> Github Work flow test 6</h1>
     </>
   )
 }
